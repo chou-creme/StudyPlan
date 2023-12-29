@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
+    <head>
+        <title>StudyPlan</title>
+    </head>
+    <body>
+        <div class="comments-new-wrapper" layout:fragment="contents">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mx-auto">
+                        <h1 class="text-center">目標の編集</h1>
+                        <form class="new_goal" id="new_goal" th:action="@{/mailpage/__${form.userId}__/goal}" th:method="POST" th:object="${form}">
+                            <div layout:replace="~{layouts/common::messages}"></div>
+                            <div class="mb-3">
+                                <textarea class="form-control" rows="10" th:errorclass="error-field"></textarea>
+                                <p th:if="${#fields.hasErrors('description')}" class="error-message" th:errors="*{description}"></p>
+                            </div>
+                            <input type="submit" value="登録" class="btn w-100 btn-outline-dark" th:value="#{goal.new.submit}" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

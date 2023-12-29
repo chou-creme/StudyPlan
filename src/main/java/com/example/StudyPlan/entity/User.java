@@ -20,6 +20,11 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToOne;
+
+import jakarta.persistence.JoinColumn;
+
 @Entity
 @Table(name = "users")
 @Data
@@ -86,4 +91,8 @@ public class User implements UserDetails, UserInf {
     public boolean isEnabled() {
         return true;
     }
+    
+    @OneToMany
+    @JoinColumn(name = "userId", insertable = false, updatable = false)
+    private List<Goal> goals;
 }

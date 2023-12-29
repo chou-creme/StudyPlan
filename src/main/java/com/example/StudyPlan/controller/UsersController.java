@@ -11,15 +11,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.modelmapper.ModelMapper;
 
 import com.example.StudyPlan.entity.User;
+import com.example.StudyPlan.entity.UserInf;
 import com.example.StudyPlan.entity.User.Authority;
 import com.example.StudyPlan.form.UserForm;
 import com.example.StudyPlan.repository.UserRepository;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import com.example.StudyPlan.entity.Goal;
+import com.example.StudyPlan.form.GoalForm;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 @Controller
 public class UsersController {
@@ -27,6 +36,9 @@ public class UsersController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private ModelMapper modelMapper;
+    
     @Autowired
     private UserRepository repository;
 
@@ -37,7 +49,8 @@ public class UsersController {
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
-    public String create(@Validated @ModelAttribute("form") UserForm form, BindingResult result, Model model, RedirectAttributes redirAttrs) {
+    public String create(@Validated @ModelAttribute("form") UserForm form, BindingResult result, Model model,
+    RedirectAttributes redirAttrs, Locale locale) {
         String name = form.getName();
         String email = form.getEmail();
         String password = form.getPassword();
