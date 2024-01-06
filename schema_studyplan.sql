@@ -39,7 +39,7 @@ ALTER TABLE completions ADD CONSTRAINT FK_completions_books FOREIGN KEY (book_id
 CREATE TABLE IF NOT EXISTS goals (
   id SERIAL NOT NULL,
   user_id INT NOT NULL,
-  goal VARCHAR(1000) NOT NULL,
+  description VARCHAR(1000) NOT NULL,
   PRIMARY KEY (id)
 );
 

@@ -20,11 +20,6 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.ManyToOne;
-
-import jakarta.persistence.JoinColumn;
-
 @Entity
 @Table(name = "users")
 @Data
@@ -45,6 +40,7 @@ public class User implements UserDetails, UserInf {
         this.name = name;
         this.password = password;
         this.authority = authority;
+        this.email = email;
     }
 
     @Id
@@ -64,6 +60,9 @@ public class User implements UserDetails, UserInf {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Authority authority;
+    
+    @Column(nullable = false, unique = true)
+    private String email;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -91,8 +90,4 @@ public class User implements UserDetails, UserInf {
     public boolean isEnabled() {
         return true;
     }
-    
-    @OneToMany
-    @JoinColumn(name = "userId", insertable = false, updatable = false)
-    private List<Goal> goals;
 }

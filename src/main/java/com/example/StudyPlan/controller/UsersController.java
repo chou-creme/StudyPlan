@@ -11,34 +11,26 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.modelmapper.ModelMapper;
 
 import com.example.StudyPlan.entity.User;
-import com.example.StudyPlan.entity.UserInf;
 import com.example.StudyPlan.entity.User.Authority;
 import com.example.StudyPlan.form.UserForm;
 import com.example.StudyPlan.repository.UserRepository;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.example.StudyPlan.entity.Goal;
-import com.example.StudyPlan.form.GoalForm;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Controller
 public class UsersController {
-
+	private static final Logger logger = LoggerFactory.getLogger(UsersController.class);
+	
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private ModelMapper modelMapper;
-    
     @Autowired
     private UserRepository repository;
 
@@ -49,13 +41,15 @@ public class UsersController {
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
-    public String create(@Validated @ModelAttribute("form") UserForm form, BindingResult result, Model model,
-    RedirectAttributes redirAttrs, Locale locale) {
+    public String create(@Validated @ModelAttribute("form") UserForm form, BindingResult result, Model model, RedirectAttributes redirAttrs) {
         String name = form.getName();
         String email = form.getEmail();
         String password = form.getPassword();
         String passwordConfirmation = form.getPasswordConfirmation();
-
+        logger.info(name);
+        logger.info(email);
+        logger.info(password);
+        logger.info(passwordConfirmation);
         if (repository.findByUsername(email) != null) {
             FieldError fieldError = new FieldError(result.getObjectName(), "email", "その E メールはすでに使用されています。");
             result.addError(fieldError);
@@ -66,6 +60,10 @@ public class UsersController {
         	model.addAttribute("message", "ユーザー登録に失敗しました。");
             return "users/new";
         }
+
+        logger.info("----------------------");
+        logger.info(email);
+        logger.info("----------------------");
 
         User entity = new User(email, name, passwordEncoder.encode(password), Authority.ROLE_USER);
         repository.saveAndFlush(entity);

@@ -10,8 +10,12 @@ public class GoalForm {
     private Long id;
 
     private Long userId;
+    
+    private String path;
 
     @NotEmpty
     @Size(max = 1000)
     private String description;
+    
+    private UserForm user;
 }

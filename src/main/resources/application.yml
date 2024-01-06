@@ -15,4 +15,9 @@ spring:
      username: ${psql.user}
      password: ${psql.password}              
 image:
-  local: true      
+  local: true
+  
+  logging:
+    file: logs/myapp.log
+    level:
+        org.springframework.web: INFO   

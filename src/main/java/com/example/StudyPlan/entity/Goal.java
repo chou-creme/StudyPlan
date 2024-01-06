@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -29,4 +31,8 @@ public class Goal implements Serializable {
 
     @Column(nullable = false, length = 1000)
     private String description;
+
+    @OneToOne
+    @JoinColumn(name = "userId", insertable = false, updatable = false)
+    private User user;
 }
