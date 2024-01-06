@@ -1,6 +1,5 @@
 package com.example.StudyPlan.controller;
 
-import org.slf4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,12 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class SessionsController {
 
-    @GetMapping(path = "/login")
+    @GetMapping("/login")
     public String index() {
         return "sessions/new";
     }
 
-    @GetMapping(path = "/login-failure")
+    @GetMapping("/login-failure")
     public String loginFailure(Model model) {
         model.addAttribute("hasMessage", true);
         model.addAttribute("class", "alert-danger");
@@ -22,7 +21,7 @@ public class SessionsController {
         return "sessions/new";
     }
 
-    @GetMapping(path = "/logout-complete")
+    @GetMapping("/logout-complete")
     public String logoutComplete(Model model) {
         model.addAttribute("hasMessage", true);
         model.addAttribute("class", "alert-info");
