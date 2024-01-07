@@ -31,7 +31,7 @@ public class MainPageController {
         List<Goal> goals = repository.findAll();
 
         //model.addAttribute("hoge", topics); //hogeという名前で、変数topicsをビューに渡す
-        model.addAttribute("goals", goals); //topicsという名前で、変数topicsをビューに渡す
+        model.addAttribute("goals", goals); //goalsという名前で、変数goalsをビューに渡す
         return "mainpage/index";
     }
 }

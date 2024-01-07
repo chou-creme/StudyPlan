@@ -1,5 +1,6 @@
 package com.example.StudyPlan.entity;
 
+import java.io.Serial;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;

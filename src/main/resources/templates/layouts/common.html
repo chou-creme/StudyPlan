@@ -13,11 +13,13 @@
       </button>  
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-				<a th:href="@{/logout}" class="nav-link convert" data-method="post" th:data-_csrf="${_csrf.token}">
-                	<img src="/images/icons/logout.png" th:src="@{/images/icons/logout.png}">
-            	</a>
-            </li>
+			<th:block sec:authorize="isAuthenticated()">
+            	<li class="nav-item">
+					<a th:href="@{/logout}" class="nav-link convert" data-method="post" th:data-_csrf="${_csrf.token}">
+                		<img src="/images/icons/logout.png" th:src="@{/images/icons/logout.png}">
+            		</a>
+            	</li>
+            </th:block>
         </ul>
       </div>
       </div>
