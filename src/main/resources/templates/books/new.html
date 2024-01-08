@@ -38,9 +38,50 @@
 								th:errors="*{estimatedcompletion_date}"></p>
 						</div>
 						<div class="mb-3">
-							<label class="form-label text-black" for="daily_pace">1日の目標進度</label>
+							<label class="form-label text-black" for="daily_pace">1日の目標進度 : <span
+									id="pace"></span></label>
 							<div id="result-container"></div>
 						</div>
+						<script>
+							document.addEventListener('DOMContentLoaded', function () {
+								const startingDateTag = document.getElementById('starting_date');
+								const estimatedcompletionDateTag = document.getElementById('estimatedcompletion_date');
+								const pagesTag = document.getElementById('pages');
+								const paceTag = document.getElementById('pace');
+
+								const initialMessage = 'ページ数、開始日、目標達成日を設定してください';
+								paceTag.textContent = initialMessage;
+
+								const updatePaceMessage = function () {
+									/*開始日*/
+									const startingDate = new Date(startingDateTag.value);
+									/*計算の基準となる日時*/
+									const estimatedcompletionDate = new Date(estimatedcompletionDateTag.value);
+									const pages = pagesTag.value;
+
+									/*日時の差をミリ秒単位で取得*/
+									const diffMilliSec = estimatedcompletionDate - startingDate;
+
+									/*ミリ秒を日数に変換*/
+									const diffDays = parseInt(diffMilliSec / 1000 / 60 / 60 / 24);
+									/*差の日数ををページ数で割り、小数点以下を切り上げ*/
+									const pace = Math.ceil(pages / diffDays);
+
+									let paceMessage = initialMessage;
+									if (diffMilliSec > 0 && !isNaN(pace)) {
+										paceMessage = `${pace} ページ`;
+									} else if (diffMilliSec <= 0) {
+										paceMessage = '目標達成日は開始日より後の日程を選択してください。';
+									}
+
+									paceTag.textContent = paceMessage;
+								};
+
+								startingDateTag.addEventListener('change', updatePaceMessage);
+								estimatedcompletionDateTag.addEventListener('change', updatePaceMessage);
+								pagesTag.addEventListener('change', updatePaceMessage);
+							});
+						</script>
 						<input type="submit" value="登録" class="btn w-100 btn-outline-light" />
 					</form>
 				</main>
@@ -48,10 +89,5 @@
 		</div>
 	</div>
 </body>
-<script>
-    var date1 = new Date(2020, 1, 1);
-	var date2 = new Date(2020, 12, 11);
- 	var termDay = (date2 - date1) / 86400000;
-	console.log(termDay);
-</script>
+
 </html>
