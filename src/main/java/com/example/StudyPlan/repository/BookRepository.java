@@ -8,5 +8,5 @@ import com.example.StudyPlan.entity.Book;
 
 public interface BookRepository extends JpaRepository<Book, Long> {
 
-	List<Book> findAllByOrderByBookId();
+	List<Book> findAllByOrderById();
 }

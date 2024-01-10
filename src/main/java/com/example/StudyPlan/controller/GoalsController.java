@@ -33,7 +33,6 @@ import com.example.StudyPlan.repository.GoalRepository;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
-@RequestMapping("/goals")
 public class GoalsController {
 
     @Autowired

@@ -13,12 +13,40 @@
 				<div class="row justify-content-center">
 					<div class="col-2">
 						<a class="btn w-100 btn-outline-light" href="/goals">目標</a>
-						<pre class="description" th:text="${goals.get(0).description}"></pre>
+						<pre class="description" th:utext="${goals.size() > 0 ? goals.get(0).description : ''}"></pre>
+					</div>
+					<div class="books-index-wrapper">
+						<div class="container">
+							<div class="row" th:each="book : ${books}">
+								<div class="col-md-6 mx-auto">
+									<main>
+										<div class="col-2">
+											<form action="/completions" method="post">
+												<button type="submit" class="btn w-100 btn-outline-light">
+													<span
+														th:text="${book.title}"></span>
+												</button>
+											</form>
+										</div>
+									</main>
+                    			</div>
+                    		</div>
+                    	</div>
+                    </div>
+										<!-- <div class="icons">
+						　<a th:if="${books.get(0).completion_date != null}" rel="nofollow" class="icon convert" data-method="delete"
+							 href="/completion_date?book_id=1" th:href="@{'/completion_date'}"  th:data-topic_id="${books.get(0).id}" th:data-_csrf="${_csrf.token}">
+							<img class="completion_date-on" src="/images/icons/star-yellow.png" th:src="@{/images/icons/star-yellow.png}" />
+						 </a>
+						 <a th:if="${books.get(0).completion_date == null}" rel="nofollow" class="icon convert" data-method="post"
+							 href="/completion_date?book_id=1" th:href="@{'/fcompletion_dat'}" th:data-topic_id="${books.get(0).id}" th:data-_csrf="${_csrf.token}">
+							<img src="/images/icons/star.png" th:src="@{/images/icons/star.png}" />
+						 </a> -->
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-	</div>
 </body>
 
 </html>

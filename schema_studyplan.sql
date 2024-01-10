@@ -15,8 +15,8 @@ CREATE TABLE IF NOT EXISTS users (
 
 CREATE TABLE IF NOT EXISTS books (
   id SERIAL NOT NULL,
-  user_id INT NOT NULL,
-  name VARCHAR(255) NOT NULL,
+  user_id SERIAL NOT NULL,
+  title VARCHAR(255) NOT NULL,
   estimatedcompletion_date DATE NOT NULL,
   pages INT NOT NULL,
   starting_date DATE NOT NULL,

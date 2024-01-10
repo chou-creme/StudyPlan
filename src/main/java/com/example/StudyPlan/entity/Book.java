@@ -31,7 +31,7 @@ public class Book implements Serializable {
     @Id
     @SequenceGenerator(name = "books_id_seq")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long bookId;
+    private Long id;
 
     @Column(nullable = false, unique = true)
     private String title;
@@ -51,5 +51,4 @@ public class Book implements Serializable {
     
     @Column(nullable = false)
     private Long userId;
-
 }
