@@ -65,11 +65,11 @@
 									/*ミリ秒を日数に変換*/
 									const diffDays = parseInt(diffMilliSec / 1000 / 60 / 60 / 24);
 									/*差の日数ををページ数で割り、小数点以下を切り上げ*/
-									const pace = Math.ceil(pages / diffDays);
+									const pace = Math.ceil(pages / (diffDays +1));
 
 									let paceMessage = initialMessage;
 									if (diffMilliSec > 0 && !isNaN(pace)) {
-										paceMessage = `${pace} ページ`;
+										paceMessage = `約${pace} ページ`;
 									} else if (diffMilliSec <= 0) {
 										paceMessage = '目標達成日は開始日より後の日程を選択してください。';
 									}

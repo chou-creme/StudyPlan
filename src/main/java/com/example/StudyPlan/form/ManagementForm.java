@@ -3,35 +3,29 @@ package com.example.StudyPlan.form;
 import java.sql.Date;
 import java.time.LocalDate;
 
-import jakarta.validation.constraints.Min;
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class BookForm {
+public class ManagementForm {
 
     private Long id;
 
     private Long userId;
 
-    private String path;
-
-    @NotEmpty
-    @Size(max = 1000)
-    private String title;
+    private Long bookId;
 
     @NotNull
-    @Min(1)
-    private int pages;
-
-    @NotNull
-    private LocalDate starting_date;
-
-    @NotNull
-    private LocalDate estimatedcompletion_date;
+    private Date completion_date;
 
     private UserForm user;
+    
+    private String title;
+    
+    private LocalDate starting_date;
+    
+    private LocalDate estimatedcompletion_date;
 
 }

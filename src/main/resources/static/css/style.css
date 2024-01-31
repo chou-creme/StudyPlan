@@ -128,5 +128,7 @@ nav.navbar {
       border: none; }
     .topics-index-wrapper main .comments ul li {
       list-style: none; }
+    .topics-index-wrapper main .fc-direction-ltr {
+      padding-top: 70px; }
 
 /*# sourceMappingURL=style.css.map */

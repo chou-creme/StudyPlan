@@ -2,8 +2,6 @@ package com.example.StudyPlan.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -16,51 +14,43 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Entity
-@Table(name = "books")
+@Table(name = "managements")
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class Book implements Serializable {
+public class Management implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @SequenceGenerator(name = "books_id_seq")
+    @SequenceGenerator(name = "managements_id_seq")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
-    private String title;
-
     @Column(nullable = false)
-    private int pages;
+    private Date completion_date;
 
-    @Column(nullable = false)
-    private LocalDate starting_date;
-
-    @Column(nullable = false)
-    private LocalDate estimatedcompletion_date;
+    @ManyToOne
+    @JoinColumn(name = "bookId", insertable = false, updatable = false)
+    private Book book;
 
     @ManyToOne
     @JoinColumn(name = "userId", insertable = false, updatable = false)
     private User user;
     
     @Column(nullable = false)
-    private Long userId;
-
-    public int calcTargetPage(int lapsedDays) {
-    	if (lapsedDays == pages) return pages;
-
-    	return (int) Math.ceil(1.0 * pages / requiredDayNum() * lapsedDays);
-    }
+    private Long bookId;
     
-    private int requiredDayNum() {
-    	return (int) ChronoUnit.DAYS.between(starting_date, estimatedcompletion_date);
-    }
- }
+    @Column(nullable = false)
+    private Long userId;
+    
+}

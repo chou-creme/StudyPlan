@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout}">
+
+<head>
+	<title>StudyPlan</title>
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+	<div class="managements-new-wrapper" layout:fragment="contents">
+		<div class="books-index-wrapper">
+			<h1 class="text-center text-black" th:text="${book.title}"></h1>
+			<!--<script th:src="@{/js/new.js}"></script>-->
+		</div>
+		<form method="post" th:action="@{/books/{bookId}/management(bookId=${book.id})}" th:object="${form}">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>目標完了日</th>
+						<th>目標完了ページ数</th>
+						<!--<th>完了日</th>-->
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="date, iterStat: ${dates}">
+						<td th:text="${date}"></td>
+						<td th:text="${book.calcTargetPage(iterStat.count)}"></td>
+	
+						<!--<td>
+							<input class="form-control" type="date" th:field="*{completion_date}" />
+						</td>-->
+					</tr>
+				</tbody>
+			</table>
+			<input class="form-control" type="date" th:field="*{completion_date}" />
+			<input type="submit" value="登録" class="btn w-100 btn-outline-light" />
+		</form>
+	</div>
+</body>
+
+</html>

@@ -75,6 +75,6 @@ public class GoalsController {
         redirAttrs.addFlashAttribute("class", "alert-info");
         redirAttrs.addFlashAttribute("message", "投稿に成功しました。");
 
-        return "redirect:/mainpage";
+        return "redirect:/mainpages";
     }
 }

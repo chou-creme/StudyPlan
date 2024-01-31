@@ -35,7 +35,7 @@ import com.example.StudyPlan.repository.BookRepository;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
-public class BookController {
+public class BooksController {
 
     @Autowired
     private ModelMapper modelMapper;
@@ -73,8 +73,8 @@ public class BookController {
 
         redirAttrs.addFlashAttribute("hasMessage", true);
         redirAttrs.addFlashAttribute("class", "alert-info");
-        redirAttrs.addFlashAttribute("message", "投稿に成功しました。");
+        redirAttrs.addFlashAttribute("message", "登録に成功しました。");
 
-        return "redirect:/mainpage";
+        return "redirect:/mainpages";
     }
 }

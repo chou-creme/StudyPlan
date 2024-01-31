@@ -22,7 +22,7 @@ import org.springframework.security.core.Authentication;
 import org.modelmapper.ModelMapper;
 
 @Controller
-public class MainPageController {
+public class MainPagesController {
 
 	@Autowired
 	private ModelMapper modelMapper;
@@ -31,7 +31,7 @@ public class MainPageController {
 	@Autowired
 	private BookRepository bookrepository;
 
-	@GetMapping("/mainpage")
+	@GetMapping("/mainpages")
 	public String index(Principal principal, Model model) throws IOException {
 		// ログインユーザのGOALを取得するのであれば必要な処理だが、Goal全権取得するだけなら今はいらない
 		Authentication authentication = (Authentication) principal;
@@ -49,7 +49,7 @@ public class MainPageController {
 			list.add(form);
 		}
 		model.addAttribute("books", books);
-		return "mainpage/index";
+		return "mainpages/index";
 	}
 	
 	public BookForm getBook(UserInf user, Book entity) throws IOException {

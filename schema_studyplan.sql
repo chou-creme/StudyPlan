@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS goals CASCADE;
 DROP TABLE IF EXISTS books CASCADE;
-DROP TABLE IF EXISTS completions CASCADE;
+DROP TABLE IF EXISTS managements CASCADE;
 DROP TABLE IF EXISTS users CASCADE;
 
 CREATE TABLE IF NOT EXISTS users (
@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS books (
 
 ALTER TABLE books ADD CONSTRAINT FK_users_books FOREIGN KEY (user_id) REFERENCES users;
 
-CREATE TABLE IF NOT EXISTS completions (
+CREATE TABLE IF NOT EXISTS managements (
   id SERIAL NOT NULL,
   user_id INT NOT NULL,
   book_id INT NOT NULL,
@@ -33,8 +33,8 @@ CREATE TABLE IF NOT EXISTS completions (
   PRIMARY KEY (id)
 );
 
-ALTER TABLE completions ADD CONSTRAINT FK_completions_users FOREIGN KEY (user_id) REFERENCES users;
-ALTER TABLE completions ADD CONSTRAINT FK_completions_books FOREIGN KEY (book_id) REFERENCES books;
+ALTER TABLE managements ADD CONSTRAINT FK_managements_users FOREIGN KEY (user_id) REFERENCES users;
+ALTER TABLE managements ADD CONSTRAINT FK_managements_books FOREIGN KEY (book_id) REFERENCES books;
 
 CREATE TABLE IF NOT EXISTS goals (
   id SERIAL NOT NULL,

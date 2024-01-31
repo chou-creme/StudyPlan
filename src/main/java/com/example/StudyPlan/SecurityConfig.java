@@ -54,7 +54,7 @@ public class SecurityConfig {
                 .formLogin(login -> login
                         .loginProcessingUrl("/login") // ログイン情報の送信先
                         .loginPage("/login") // ログイン画面
-                        .defaultSuccessUrl("/mainpage") // ログイン成功時の遷移先
+                        .defaultSuccessUrl("/mainpages") // ログイン成功時の遷移先
                         .failureUrl("/login-failure") // ログイン失敗時の遷移先
                         .permitAll()) // 未ログインでもアクセス可能
                 .logout(logout -> logout
