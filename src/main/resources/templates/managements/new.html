@@ -34,7 +34,7 @@
 					</tr>
 				</tbody>
 			</table>
-			<input class="form-control" type="date" th:field="*{completion_date}" />
+			<input class="form-control" type="date" th:field="*{completion_date}" th:value="${form.completion_date}"/>
 			<input type="submit" value="登録" class="btn w-100 btn-outline-light" />
 		</form>
 	</div>

@@ -21,31 +21,51 @@
 								<div class="col-md-6 mx-auto">
 									<main>
 										<div class="col-2">
-											<a href="/mainpages/1/managements/new" th:href="@{'/books/{id}/managements/new'(id=${book.id})}" class="btn btn-primary" th:data-_csrf="${_csrf.token}">
+											<a href="/mainpages/1/managements/new"
+												th:href="@{'/books/{id}/managements/new'(id=${book.id})}"
+												class="btn btn-primary" th:data-_csrf="${_csrf.token}">
 												<!--<button type="submit" class="btn w-100 btn-outline-light">-->
-													<span th:text="${book.title}"></span>
+												<span type="submit" class="w-100 btn-outline-light" th:text="${book.title}"></span>
+												<!--<span th:text="${management.completion_date}"></span>-->
 												<!--</button>-->
 											</a>
 										</div>
+										<div class="managements-index-wrapper">
+											<div class="container">
+												<div class="row">
+													<div class="col-md-6 mx-auto">
+														<!--<span th:text="${management.completion_date}"></span>-->
+														<div class="icons">
+															　<a th:if="${book.hasCompleted()}"
+																rel="nofollow" th:data-management_id="${book.management.id}"
+																th:data-_csrf="${_csrf.token}">
+																<img class="completion_date-on"
+																	src="/images/icons/star-yellow.png"
+																	th:src="@{/images/icons/star-yellow.png}"
+																	width="200" height="200" />
+															</a>
+															<a th:unless="${book.hasCompleted()}"
+																rel="nofollow"
+																th:data-book_id="${books.get(0).id}"
+																th:data-_csrf="${_csrf.token}">
+																<img src="/images/icons/star.png"
+																	th:src="@{/images/icons/star.png}" width="200"
+																	height="200" />
+															</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
 									</main>
-                    			</div>
-                    		</div>
-                    	</div>
-                    </div>
-										<!-- <div class="icons">
-						　<a th:if="${books.get(0).completion_date != 今日の日付を含む}" rel="nofollow" class="icon convert" data-method="delete"
-							 href="/completion_date?book_id=1" th:href="@{'/completion_date'}"  th:data-topic_id="${books.get(0).id}" th:data-_csrf="${_csrf.token}">
-							<img class="completion_date-on" src="/images/icons/star-yellow.png" th:src="@{/images/icons/star-yellow.png}" />
-						 </a>
-						 <a th:if="${books.get(0).completion_date == 今日の日付を含まない}" rel="nofollow" class="icon convert" data-method="post"
-							 href="/completion_date?book_id=1" th:href="@{'/fcompletion_dat'}" th:data-topic_id="${books.get(0).id}" th:data-_csrf="${_csrf.token}">
-							<img src="/images/icons/star.png" th:src="@{/images/icons/star.png}" />
-						 </a> -->
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+			</div>
+		</div>
+	</div>
 </body>
 
 </html>

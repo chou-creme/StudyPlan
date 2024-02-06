@@ -2,6 +2,7 @@ package com.example.StudyPlan.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -37,7 +38,7 @@ public class Management implements Serializable {
     private Long id;
 
     @Column(nullable = false)
-    private Date completion_date;
+    private LocalDate completion_date;
 
     @ManyToOne
     @JoinColumn(name = "bookId", insertable = false, updatable = false)

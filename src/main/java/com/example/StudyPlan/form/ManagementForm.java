@@ -17,8 +17,7 @@ public class ManagementForm {
 
     private Long bookId;
 
-    @NotNull
-    private Date completion_date;
+    private LocalDate completion_date;
 
     private UserForm user;
     
@@ -27,5 +26,7 @@ public class ManagementForm {
     private LocalDate starting_date;
     
     private LocalDate estimatedcompletion_date;
+    
+    private BookForm book;
 
 }

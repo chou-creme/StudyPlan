@@ -2,6 +2,7 @@ package com.example.StudyPlan.form;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
@@ -33,5 +34,7 @@ public class BookForm {
     private LocalDate estimatedcompletion_date;
 
     private UserForm user;
+    
+    private ManagementForm management;
 
 }

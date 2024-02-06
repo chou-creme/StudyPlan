@@ -130,5 +130,8 @@ nav.navbar {
       list-style: none; }
     .topics-index-wrapper main .fc-direction-ltr {
       padding-top: 70px; }
+    .topics-index-wrapper main .completion_date-on {
+      width: "100px";
+      height: "100px"; }
 
 /*# sourceMappingURL=style.css.map */

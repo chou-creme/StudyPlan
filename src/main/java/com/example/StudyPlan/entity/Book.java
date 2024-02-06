@@ -7,6 +7,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,6 +17,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.SequenceGenerator;
@@ -54,6 +56,7 @@ public class Book implements Serializable {
     @Column(nullable = false)
     private Long userId;
 
+    //進捗管理画面で1日のペースを表示する
     public int calcTargetPage(int lapsedDays) {
     	if (lapsedDays == pages) return pages;
 
@@ -62,5 +65,12 @@ public class Book implements Serializable {
     
     private int requiredDayNum() {
     	return (int) ChronoUnit.DAYS.between(starting_date, estimatedcompletion_date);
+    }
+    
+    @OneToOne(mappedBy = "book")
+    public Management management;
+    
+    public boolean hasCompleted() {
+    	return management != null && management.getCompletion_date() != null;
     }
  }

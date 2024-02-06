@@ -100,8 +100,19 @@ public class ManagementsController {
 
 		List<LocalDate> dates = getDatesBetween(book.getStarting_date(), book.getEstimatedcompletion_date());
 		model.addAttribute("dates", dates);
-
+		
+		// データベースから completion_date を取得
+		//List<Management> managementList = repository.findAllByOrderById();
+		//if (!managementList.isEmpty()) {
+			//Management management = managementList.get(0);
+		    //form.setCompletion_date(management.getCompletion_date());
+        // 他のデータを取得してもよい
+        //model.addAttribute("form", form);
+        //model.addAttribute("management", management);
+		//} else {
+		    // リストが空の場合の処理
 		return "managements/new"; // Thymeleafのテンプレート名を返す
+		//}
 	}
 
 	//目標完了日の列を出す
