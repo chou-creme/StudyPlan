@@ -11,9 +11,9 @@ spring:
    database: POSTGRESQL 
   datasource:
      driverClassName: org.postgresql.Driver
-     url: jdbc:postgresql://localhost:5432/studyplan
-     username: ${psql.user}
-     password: ${psql.password}              
+     url: jdbc:postgresql://localhost:5432/${portfolio.dbname}
+     username: ${portfolio.user}
+     password: ${portfolio.password}              
 image:
   local: true
   
