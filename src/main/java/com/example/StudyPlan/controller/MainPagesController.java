@@ -21,6 +21,7 @@ import com.example.StudyPlan.repository.GoalRepository;
 import com.example.StudyPlan.repository.ManagementRepository;
 
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.modelmapper.ModelMapper;
@@ -43,10 +44,11 @@ public class MainPagesController {
 		Authentication authentication = (Authentication) principal;
 		UserInf user = (UserInf) authentication.getPrincipal();
 
-		List<Goal> goals = goalrepository.findAll();
+		// TODO: Userに対応したGoalを取得
+		Goal goal = goalrepository.findAll().get(1);
 
 		// model.addAttribute("hoge", topics); //hogeという名前で、変数topicsをビューに渡す
-		model.addAttribute("goals", goals); // goalsという名前で、変数goalsをビューに渡す
+		model.addAttribute("goal", goal); // 、変数goalsをビューに渡す
 
 		List<Book> books = bookrepository.findAllByOrderById();
 		List<BookForm> list = new ArrayList<>();
@@ -54,6 +56,14 @@ public class MainPagesController {
 			BookForm form = getBook(user, entity);
 			list.add(form);
 		}
+//		String s = "";
+//		if (StringUtils.hasText(s)) {
+//			
+//		}
+//		if (s != null && s.isEmpty()) {
+//			
+//		}
+		
 		model.addAttribute("books", books);
 		return "mainpages/index";
 	}
